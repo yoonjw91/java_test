@@ -11,6 +11,8 @@ public class HelloWord {
 		int input = scan.nextInt();
 		int fix = input;
 		String answer = "";
+		String trial = "";
+		
 		
 		if(input > 0 && input < 6){
 			answer = Quiz(input);			
@@ -23,8 +25,10 @@ public class HelloWord {
 		
 		
 		while(true){
+			Scanner scan2 = new Scanner(System.in);
 			System.out.print("정답은? : ");
-			String trial = scan.nextLine();
+			
+			trial = scan2.nextLine();
 			
 			if(answer.equals(trial)){
 				System.out.println("짝짝짝 정답입니다!");	
