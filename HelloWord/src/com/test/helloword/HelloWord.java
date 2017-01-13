@@ -8,29 +8,17 @@ public class HelloWord {
 		Scanner scan = new Scanner(System.in);
 		
 		System.out.print("문제 번호를 입력해주세요 : ");
-		String input = scan.nextLine();
-		String fix = input;
+		int input = scan.nextInt();
+		int fix = input;
 		String answer = "";
 		
-		if(input.equals("1")){
-			answer = Quiz("1");			
-		}
-		else if(input.equals("2")){
-			answer = Quiz("2");
-		}
-		else if(input.equals("3")){
-			answer = Quiz("3");
-		}
-		else if(input.equals("4")){
-			answer = Quiz("4");
-		}
-		else if(input.equals("5")){
-			answer = Quiz("5");
-		}		
+		if(input > 0 && input < 6){
+			answer = Quiz(input);			
+		}	
 		else {		
 			System.out.print("1에서 5까지의 숫자만 입력하세요");
 			System.out.print("문제 번호를 입력해주세요 : ");
-			input = scan.nextLine();
+			input = scan.nextInt();
 		}
 		
 		
@@ -51,7 +39,7 @@ public class HelloWord {
 		
 	}
 	
-	public static String Quiz(String input){
+	public static String Quiz(int input){
 		String[] matrix1 = {"┌─────────┐",
 							"│ 육 두 쌍 칸 │",
 							"│ 짜 까 치 곱 │",
@@ -84,35 +72,35 @@ public class HelloWord {
 							"└─────────┘"};
 		
 		String answer = "";
-		if(input.equals("1")){
+		if(input == 1){
 			System.out.println("문제 1");
 			for(int i = 0; i < 6; i++){
 				System.out.println(matrix1[i]);
 			}
 			answer = "곱창";		
 		}
-		else if(input.equals("2")){
+		else if(input == 2){
 			System.out.println("문제 2");
 			for(int i = 0; i < 6; i++){
 				System.out.println(matrix2[i]);
 			}
 			answer = "이명우";
 		}
-		else if(input.equals("3")){
+		else if(input == 3){
 			System.out.println("문제 3");
 			for(int i = 0; i < 6; i++){
 				System.out.println(matrix3[i]);
 			}
 			answer = "유희상";
 		}
-		else if(input.equals("4")){
+		else if(input == 4){
 			System.out.println("문제 4");
 			for(int i = 0; i < 6; i++){
 				System.out.println(matrix4[i]);
 			}
 			answer = "치타";
 		}
-		else if(input.equals("5")){
+		else if(input == 5){
 			System.out.println("문제 5");
 			for(int i = 0; i < 6; i++){
 				System.out.println(matrix5[i]);
