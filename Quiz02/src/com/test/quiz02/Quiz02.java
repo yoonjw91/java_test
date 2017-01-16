@@ -7,16 +7,16 @@ public class Quiz02 {
 	public static void main(String[] args) {
 		while(true){
 			Scanner scan = new Scanner(System.in);
-			System.out.println("¼ıÀÚ¸¦ ÀÔ·ÂÇÏ¼¼¿ä(1~4) / Á¾·á(5)");
+			System.out.println("ìˆ«ìë¥¼ ì…ë ¥í•˜ì„¸ìš”(1~4) / ì¢…ë£Œ(5)");
 			int input = scan.nextInt();
 			String star = "*";
 			String blank = " ";
 			
 			if(input == 5){
-				System.out.println("Á¾·áÇÏ¿´½À´Ï´Ù.");
+				System.out.println("ì¢…ë£Œí–ˆìŠµë‹ˆë‹¤.");
 				break;
 			}else if(input < 0 || input > 5){
-				System.out.println("Àß¸øÀÔ·ÂÇß½À´Ï´Ù. ´Ù½Ã ÀÔ·ÂÇØÁÖ¼¼¿ä.");
+				System.out.println("ì˜ëª»ì…ë ¥í–ˆìŠµë‹ˆë‹¤. ë‹¤ì‹œ ì…ë ¥í•´ì£¼ì„¸ìš”.");
 				continue;
 			}
 			else{
@@ -33,16 +33,13 @@ public class Quiz02 {
 				}
 				else{
 					for(int i = 0, k = 5; i < 5; i++, k--){
-						if(input == 4){
-							for(int j = 0; j < k; j++){
-								System.out.print(star);
-							}
+						for(int j = 0; j < k; j++){
+							System.out.print(star);
+						}
+						if(input == 4){							
 							System.out.println(blank);
 							blank = blank + " ";
 						}else{
-							for(int j = 0; j < k; j++){
-								System.out.print(star);
-							}
 							System.out.println("");
 						}
 						
