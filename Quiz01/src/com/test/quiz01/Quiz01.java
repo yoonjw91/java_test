@@ -10,11 +10,11 @@ public class Quiz01 {
 		String trial;
 		String ans = "";
 		
-		System.out.println("┌──────────────────┐");
-		System.out.println("│      M E N U     │");
-		System.out.println("│ 1.게임시작     	   │");
-		System.out.println("│ 2.게임종료     	   │");
-		System.out.println("└──────────────────┘");
+		System.out.println("┌─────────────────┐");
+		System.out.println("│     M E N U     │");
+		System.out.println("│ 1.게임시작             │");
+		System.out.println("│ 2.게임종료             │");
+		System.out.println("└─────────────────┘");
 		input = scan.nextInt();
 		num = 1;
 		if (input == 1) {
