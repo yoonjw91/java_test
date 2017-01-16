@@ -16,7 +16,7 @@ public class Quiz01 {
 		System.out.println("│ 2.게임종료             │");
 		System.out.println("└─────────────────┘");
 		input = scan.nextInt();
-		num = 1;
+		num = 0;
 		if (input == 1) {
 			while(true){
 				ans = quiz(num);
@@ -38,7 +38,7 @@ public class Quiz01 {
 					System.out.println("<<문제풀이 종료>>");
 					break;
 				}
-				else if(num >= 8){
+				else if(num >= 7){
 					System.out.println("모든 문제를 다 푸셨습니다. 수고하셨습니다!");
 					break;
 				}
@@ -56,111 +56,48 @@ public class Quiz01 {
 	
 	static String quiz(int input){
 		String answer = "";
+		String[][] matrix = new String[8][4];
+		String[] ans = {"곱창","이명우","유희상","치타","공유","승마","케이티","제티"}; 
+		matrix[0][0] = "│ 육 두 쌍 칸 │";
+		matrix[0][1] = "│ 짜 까 치 곱 │";
+		matrix[0][2] = "│ 창 동 겹 파 │";
+		matrix[0][3] = "│ 자 뽕 면 발 │";
+		matrix[1][0] = "│ 지 원 주 명 │";
+		matrix[1][1] = "│ 우 수 동 환 │";
+		matrix[1][2] = "│ 박 성 연 인 │";
+		matrix[1][3] = "│ 진 정 이 롱 │";
+		matrix[2][0] = "│ 장 훈 용 찬 │";
+		matrix[2][1] = "│ 서 희 구 진 │";
+		matrix[2][2] = "│ 다 호 최 유 │";
+		matrix[2][3] = "│ 상 열 준 범 │";
+		matrix[3][0] = "│ 코 염 슴 치 │";
+		matrix[3][1] = "│ 호 끼 수 지 │";
+		matrix[3][2] = "│ 고 랑 원 린 │";
+		matrix[3][3] = "│ 가 릴 타 문 │";
+		matrix[4][0] = "│ 건 제 검 박 │";
+		matrix[4][1] = "│ 우 빈 공 부 │";
+		matrix[4][2] = "│ 유 잔 상 든 │";
+		matrix[4][3] = "│ 훤 이 만 호 │";
+		matrix[5][0] = "│ 마 스 콜 두 │";
+		matrix[5][1] = "│ 용 테 고 링 │";
+		matrix[5][2] = "│ 축 역 프 수 │";
+		matrix[5][3] = "│ 양 야 말 승 │";
+		matrix[6][0] = "│ 이 플 동 에 │";
+		matrix[6][1] = "│ 두 수 성 나 │";
+		matrix[6][2] = "│ 글 한 케 다 │";
+		matrix[6][3] = "│ 디 레 엘 티 │";
+		matrix[7][0] = "│ 환 티 아 봉 │";
+		matrix[7][1] = "│ 마 콜 운 레 │";
+		matrix[7][2] = "│ 사 스 밀 다 │";
+		matrix[7][3] = "│ 수 붕 제 비 │";
+
+		System.out.println("┌─────────┐");
 		
-		String[] matrix1 = {"┌─────────┐",
-							"│ 육 두 쌍 칸 │",
-							"│ 짜 까 치 곱 │",
-							"│ 창 동 겹 파 │",
-							"│ 자 뽕 면 발 │",
-							"└─────────┘"};
-		String[] matrix2 = {"┌─────────┐",
-							"│ 지 원 주 명 │",
-							"│ 우 수 동 환 │",
-							"│ 박 성 연 인 │",
-							"│ 진 정 이 롱 │",
-							"└─────────┘"};
-		String[] matrix3 = {"┌─────────┐",
-							"│ 장 훈 용 찬 │",
-							"│ 서 희 구 진 │",
-							"│ 다 호 최 유 │",
-							"│ 상 열 준 범 │",
-							"└─────────┘"};
-		String[] matrix4 = {"┌─────────┐",
-							"│ 코 염 슴 치 │",
-							"│ 호 끼 수 지 │",
-							"│ 고 랑 원 린 │",
-							"│ 가 릴 타 문 │",
-							"└─────────┘"};
-		String[] matrix5 = {"┌─────────┐",
-							"│ 건 제 검 박 │",
-							"│ 우 빈 공 부 │",
-							"│ 유 잔 상 든 │",
-							"│ 훤 이 만 호 │",
-							"└─────────┘"};
-		String[] matrix6 = {"┌─────────┐",
-							"│ 마 스 콜 두 │",
-							"│ 용 테 고 링 │",
-							"│ 축 역 프 수 │",
-							"│ 양 야 말 승 │",
-							"└─────────┘"};
-		String[] matrix7 = {"┌─────────┐",
-							"│ 이 플 동 에 │",
-							"│ 두 수 성 나 │",
-							"│ 글 한 케 다 │",
-							"│ 디 레 엘 티 │",
-							"└─────────┘"};
-		String[] matrix8 = {"┌─────────┐",
-							"│ 환 티 아 봉 │",
-							"│ 마 콜 운 레 │",
-							"│ 사 스 밀 다 │",
-							"│ 수 붕 제 비 │",
-							"└─────────┘"};
-		if(input == 1){
-			System.out.println("문제 1 : 음식");
-			for(int i = 0; i < 6; i++){
-				System.out.println(matrix1[i]);
-			}
-			answer = "곱창";		
+		for(int i = 0; i < 4; i++){
+			System.out.println(matrix[input][i]);
 		}
-		else if(input == 2){
-			System.out.println("문제 2 : 우리반 사람들 중에 한명");
-			for(int i = 0; i < 6; i++){
-				System.out.println(matrix2[i]);
-			}
-			answer = "이명우";
-		}
-		else if(input == 3){
-			System.out.println("문제 3 : 우리반 사람들 중에 한명");
-			for(int i = 0; i < 6; i++){
-				System.out.println(matrix3[i]);
-			}
-			answer = "유희상";
-		}
-		else if(input == 4){
-			System.out.println("문제 4 : 동물");
-			for(int i = 0; i < 6; i++){
-				System.out.println(matrix4[i]);
-			}
-			answer = "치타";
-		}
-		else if(input == 5){
-			System.out.println("문제 5 : 남자배우");
-			for(int i = 0; i < 6; i++){
-				System.out.println(matrix5[i]);
-			}
-			answer = "공유";
-		}
-		else if(input == 6){
-			System.out.println("문제 6 : 스포츠");
-			for(int i = 0; i < 6; i++){
-				System.out.println(matrix6[i]);
-			}
-			answer = "승마";
-		}
-		else if(input == 7){
-			System.out.println("문제 7 : 기업");
-			for(int i = 0; i < 6; i++){
-				System.out.println(matrix7[i]);
-			}
-			answer = "케이티";
-		}
-		else if(input == 8){
-			System.out.println("문제 8 : 음료수");
-			for(int i = 0; i < 6; i++){
-				System.out.println(matrix8[i]);
-			}
-			answer = "제티";
-		}
+		System.out.println("└─────────┘");
+		answer = ans[input];
 		return answer;
 	}
 	
