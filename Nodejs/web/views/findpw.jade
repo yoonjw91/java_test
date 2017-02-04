@@ -1,0 +1,181 @@
+doctype html
+html(lang='ko')
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    meta(name='description', content='')
+    meta(name='author', content='')
+    title MENTal Of uS
+    // Bootstrap Core CSS
+    link(href='stylesheets/bootstrap.min.css', rel='stylesheet')
+    // Custom CSS
+    link(href='stylesheets/modern-business.css', rel='stylesheet')
+    // Custom Fonts
+    link(href='font-awesome/css/font-awesome.min.css', rel='stylesheet', type='text/css')
+    // HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries
+    // WARNING: Respond.js doesn't work if you view the page via file://
+    //if lt IE 9
+      script(src='https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js')
+      script(src='https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js')
+    // All the files that are required
+    link(rel='stylesheet', href='//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css')
+    link(href='http://fonts.googleapis.com/css?family=Varela+Round', rel='stylesheet', type='text/css')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.13.1/jquery.validate.min.js')
+    meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1')
+    // ajax
+    script(src='https://code.jquery.com/jquery-1.10.2.js')
+    script(src='//code.jquery.com/jquery-1.11.0.min.js')
+    script(src='dist/sweetalert.min.js')
+    link(rel='stylesheet', type='text/css', href='dist/sweetalert.css')
+
+  body
+    // Navigation
+    nav.navbar.navbar-inverse.navbar-fixed-top(role='navigation')
+      .container
+        // Brand and toggle get grouped for better mobile display
+        .navbar-header
+          button.navbar-toggle(type='button', data-toggle='collapse', data-target='#bs-example-navbar-collapse-1')
+            span.sr-only Toggle navigation
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a.navbar-brand(href='/main') Mentos
+        // Collect the nav links, forms, and other content for toggling
+        #bs-example-navbar-collapse-1.collapse.navbar-collapse
+          ul.nav.navbar-nav.navbar-right
+            li
+              a(href='/board') 내 노트
+            li.dropdown
+              a.dropdown-toggle(href='#', data-toggle='dropdown')
+                | 추천
+                b.caret
+              ul.dropdown-menu
+                li
+                  a(href='/movie') 영화 추천
+                li
+                  a(href='/food') 맛집 추천
+                li
+                  a(href='/consult') 상담소
+            li
+              a(href='/mypage') 마이페이지
+        // /.navbar-collapse
+      // /.container
+    // Header Carousel
+    header#myCarousel.carousel.slide
+      // Indicators
+      ol.carousel-indicators
+        li.active(data-target='#myCarousel', data-slide-to='0')
+        li(data-target='#myCarousel', data-slide-to='1')
+        li(data-target='#myCarousel', data-slide-to='2')
+      // Wrapper for slides
+      .carousel-inner
+        .item.active
+          .fill(style="background-image:url('http://placehold.it/1900x1080&text=MENTal Of uS');")
+      // Controls
+    // Page Content
+    .container
+      // Marketing Icons Section
+      .row
+        .col-lg-12
+          h1.page-header
+            | 지친 현대인들을 위한 멘탈 클리닉
+
+      // /.row
+      // Where all the magic happens
+      // FORGOT PASSWORD FORM
+      .text-center(style='padding:50px 0;border-left-width: 50px;')
+        // Main Form
+        .login-form-1
+          form#findpw-form.text-left(action='/findpw', method='post')
+            .main-login-form
+              .login-group
+                .form-group
+                    label.sr-only(for='find_email') 이메일
+                    input#find_email.form-control(type='text', name='find_email', placeholder='이메일을 입력하세요')
+                    font#emptyEmail(color='red')
+                .form-group
+                  label 질문
+                  select#find_question.form-control(name='find_question')
+                    option(value='1') 나의 고향은?
+                    option(value='2') 내 별명은?
+                    option(value='3') 내가 처음 키운 애완동물 이름은?
+                    option(value='4') 내가 좋아하는 가수는?
+                    option(value='5') 나의 좌우명은?
+                .form-group
+                  label.sr-only(for='find_answer') 답
+                  input#find_answer.form-control(type='text', name='find_answer', placeholder='답을 입력하세요.')
+                  font#emptyAnswer(color='red')
+                button#findpwSub.login-button(type='button') 확인
+            .etc-login-form
+              p
+                | 비밀번호를 찾으셨나요?
+                a(href='/login')     로그인해주세요.
+              p
+                | 이메일이 없으신가요?
+                a(href='/signin') 새로운 계정을 만들어주세요
+
+        // end:Main Form
+      hr
+      // Footer
+      footer
+        .row
+          .col-lg-12
+            p Copyright © Mentos 2017
+    // /.container
+    // jQuery
+
+    script(src='javascripts/jquery.js')
+    // Bootstrap Core JavaScript
+    script(src='javascripts/bootstrap.min.js')
+    // Script to Activate the Carousel
+    script.
+        $('.carousel').carousel({
+            interval: 5000 //changes the speed
+        });
+    script(type="text/javascript").
+        $("#find_email").focusout(function(){
+          if(!($("#find_email").val()))
+            $("#emptyEmail").text("  이메일을 입력하세요");
+        else
+            $("#emptyEmail").text(" ");
+        });
+        $("#find_answer").focusout(function(){
+          if(!($("#find_answer").val()))
+            $("#emptyAnswer").text("  답을 입력하세요");
+        else
+            $("#emptyAnswer").text(" ");
+        });
+        $(document).ready(function(){
+          $("#findpwSub").click(function(){
+              if ($("#find_email").val() == "") {
+                  swal('이메일을 입력하세요.','','error');
+                  $("#find_email").focus();
+                  return false;
+              }
+              if ($("#find_answer").val() == "") {
+                  swal('답을 입력하세요.','','error');
+                  $("#find_answer").focus();
+                  return false;
+              }
+              $.ajax({
+                url:"/findpwProcess",
+                dataType:"jsonp",
+                type:"POST",
+                data:$("#findpw-form").serialize(),
+                success:function(data){
+                    if(data.result)
+                        swal({
+                            title: data.msg,
+                            imageUrl: "images/key.png"
+                        });
+                    else
+                        swal(data.msg,'','error')
+                },
+                error:function(request,status,error){
+                  alert('코드:'+request.status+'\n'+'메세지:'+request.responseText+'\n'+'에러:'+error);
+                }
+              });
+
+          });
+        });

@@ -1,0 +1,135 @@
+doctype html
+html(lang='ko')
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    meta(name='description', content='')
+    meta(name='author', content='')
+    title MENTal Of uS
+    // Bootstrap Core CSS
+    link(href='stylesheets/bootstrap.min.css', rel='stylesheet')
+    // Custom CSS
+    link(href='stylesheets/modern-business.css', rel='stylesheet')
+    // Custom Fonts
+    link(href='font-awesome/css/font-awesome.min.css', rel='stylesheet', type='text/css')
+    // HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries
+    // WARNING: Respond.js doesn't work if you view the page via file://
+    //if lt IE 9
+      script(src='https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js')
+      script(src='https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js')
+    // All the files that are required
+    link(rel='stylesheet', href='//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css')
+    link(href='http://fonts.googleapis.com/css?family=Varela+Round', rel='stylesheet', type='text/css')
+    meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1')
+    script(src='dist/sweetalert.min.js')
+    link(rel='stylesheet', type='text/css', href='dist/sweetalert.css')
+    script(src="/socket.io/socket.io.js")
+    script(type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js")
+
+  body
+    // Navigation
+    nav.navbar.navbar-inverse.navbar-fixed-top(role='navigation')
+      .container
+        // Brand and toggle get grouped for better mobile display
+        .navbar-header
+          button.navbar-toggle(type='button', data-toggle='collapse', data-target='#bs-example-navbar-collapse-1')
+            span.sr-only Toggle navigation
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a.navbar-brand(href='/main') Mentos
+          a.navbar-brand(href='/mypage') #{name}
+        // Collect the nav links, forms, and other content for toggling
+        #bs-example-navbar-collapse-1.collapse.navbar-collapse
+          ul.nav.navbar-nav.navbar-right
+            li
+              a(href='/board') 내 노트
+            li.dropdown
+              a.dropdown-toggle(href='#', data-toggle='dropdown')
+                | 추천 
+                b.caret
+              ul.dropdown-menu
+                li
+                  a(href='/movie') 영화 추천
+                li
+                  a(href='/food') 맛집 추천
+            li
+              a(href='/consult') 멘탈클리닉
+            li
+              a(href='/mypage') 마이페이지
+            li
+              a(href='/logout') 로그아웃
+        // /.navbar-collapse
+      // /.container
+    // Header Carousel
+    header#myCarousel.carousel.slide
+      
+      // Wrapper for slides
+      .carousel-inner
+        .item.active
+          .fill(style="background-image:url('http://placehold.it/1900x1080&text=MENTal Of uS');")
+      // Controls
+    // Page Content
+    .container
+      // Marketing Icons Section
+      .row
+        .col-lg-12
+          h1.page-header
+            | 지친 현대인들을 위한 멘탈 클리닉
+          ol.breadcrumb
+            | #{name}님 안녕하세요
+          input#jsontext(type='hidden', value='#{jsontext}')
+          input#c_no(type='hidden', value='#{c_no}')
+          input#success(type='hidden', value='true')
+          #board
+
+
+      // Footer
+      footer
+        .row
+          .col-lg-12
+            p Copyright © Mentos 2017
+    // /.container
+    // jQuery
+    script(src='http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.2.min.js')
+    script(src='http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.4/bootstrap.min.js')
+    script(src='javascripts/jquery.js')
+    // Bootstrap Core JavaScript
+    script(src='javascripts/bootstrap.min.js')
+    // Script to Activate the Carousel
+    script.
+      $('.carousel').carousel({
+      interval: 5000 //changes the speed
+      });
+    script(type='text/javascript').
+      swal("환영합니다", "", "success");
+      var socket = null;
+      $(document).ready(function () {
+        socket = io.connect();
+        socket.emit('load_note', JSON.stringify({c_no:Number($('#c_no').val())}));
+        socket.on('load_note', function(data){
+          data = JSON.parse(data);
+          if(data.length > 0){
+            for(var i = 0; i < data.length; i++){
+              $('#board').append('<div class="col-md-4"><div class="panel panel-default"><div class="panel-heading"><h4><i class="fa fa-fw fa-check"></i>' + data[i].c_title + 
+                '<div class="close"><i class="fa fa-fw fa-remove" name="' + data[i]._id + '"></i></div></h4></div><div class="panel-body"><p>' + data[i].c_content + 
+                '</p></div></div></div>');
+            }
+            $('i').click(function(){
+            var result = confirm('정말로 삭제하시겠습니까?');
+            if(result){
+              socket.emit('delete_note', JSON.stringify({_id:$(this).attr('name')}));
+              location.href="/main";
+            }
+          
+        });
+          }else{
+            $('#board').append('<div class="col-lg-12"><ol class= "breadcrumb" >게시글이 없습니다.</ol></div >');
+          }
+        });
+        
+        
+      });
+
+      
